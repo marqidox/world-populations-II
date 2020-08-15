@@ -1,0 +1,33 @@
+select count(*) as Africa_count from countries where continent is 'Africa';
+
+select countries.continent, round(sum(population_years.population),2) as total_population, population_years.year
+from population_years 
+join countries 
+  on countries.id = population_years.country_id 
+where year is 2005 and continent is 'Oceania'; 
+
+select countries.continent, round(avg(population_years.population),2) as average_population, population_years.year
+from population_years 
+join countries 
+  on countries.id = population_years.country_id 
+where year is 2003 and continent is 'South America'; 
+
+select countries.name as country, min(population_years.population) as smallest_population, population_years.year
+from countries 
+join population_years 
+  on countries.id = population_years.country_id 
+where year is 2007;
+
+select countries.name as country, round(avg(population_years.population),2) as average_population
+from countries
+join population_years
+  on countries.id = population_years.country_id 
+where name is 'Poland';
+
+select count(*) as country_count_The from countries where name like '%The%';
+
+select continent, round(sum(population_years.population),2) as total_population 
+from countries
+join population_years
+  on countries.id = population_years.country_id
+where population_years.year = 2010 group by 1;
